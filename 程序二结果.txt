@@ -1,0 +1,126 @@
+请输入SNL程序片段：
+program p
+type t1 = integer;
+var integer v1,v2;
+procedure
+q(integer i);
+var integer a;
+begin
+ a:=i;
+ write(a)
+end
+begin
+ read(v1);
+ if v1<10
+then v1:=v1+10
+else v1:=v1-10
+fi;
+ q(v1)
+end.
+输入程序段经过词法分析器之后的Token序列为:
+reserved word,PROGRAM
+CHAR,p
+reserved word,TYPE
+ID,t1
+EQ,=
+reserved word,INTEGER
+SEMI,;
+reserved word,VAR
+reserved word,INTEGER
+ID,v1
+JSP1,,
+ID,v2
+SEMI,;
+reserved word,PROCEDURE
+CHAR,q
+LPAREN,(
+reserved word,INTEGER
+CHAR,i
+RPAREN,)
+SEMI,;
+reserved word,VAR
+reserved word,INTEGER
+CHAR,a
+SEMI,;
+reserved word,BEGIN
+CHAR,a
+ASSIGN,:=
+CHAR,i
+SEMI,;
+reserved word,WRITE
+LPAREN,(
+CHAR,a
+RPAREN,)
+reserved word,END
+reserved word,BEGIN
+reserved word,READ
+LPAREN,(
+ID,v1
+RPAREN,)
+SEMI,;
+reserved word,IF
+ID,v1
+LT,<
+NUM,10
+reserved word,THEN
+ID,v1
+ASSIGN,:=
+ID,v1
+PLUS,+
+NUM,10
+reserved word,ELSE
+ID,v1
+ASSIGN,:=
+ID,v1
+MINUS,-
+NUM,10
+reserved word,FI
+SEMI,;
+CHAR,q
+LPAREN,(
+ID,v1
+RPAREN,)
+reserved word,END
+DOT,.
+EOF
+程序经过语法分析器之后的语法分析树为:
+Prok
+    PheadK p
+    TYPE
+        Deck INTEGER t1
+    VAR
+        DecK INTEGER v1 v2
+    PROCEDURE
+        HDeck q
+            DecK value param INTEGER i
+            VAR
+                DecK INTEGER a
+            StmLK
+                StmtK AssignK
+                    ExpK a IdK
+                    ExpK i IdK
+                StmtK WRITE
+                    ExpK a IdK
+    StmLK
+        StmtK READ
+            ExpK v1 IdK
+        StmtK IF
+            ExpK v1 IdK
+            ExpK OP <
+            ExpK const 10
+            StmtK THEN
+                ExpK v1 IdK
+                ExpK v1 IdK
+                ExpK OP +
+                ExpK const 10
+            StmtK ELSE
+                ExpK v1 IdK
+                ExpK v1 IdK
+                ExpK OP -
+                ExpK const 10
+        StmtK CALL
+            ExpK q IdK
+            ExpK v1 IdK
+语法分析树生成成功
+D:\编译器\vs代码区\compiler\Debug\compiler.exe (进程 8908)已退出，代码为 0。
+按任意键关闭此窗口. . .

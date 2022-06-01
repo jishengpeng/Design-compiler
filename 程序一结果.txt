@@ -1,0 +1,85 @@
+请输入SNL程序片段：
+program p
+type t = integer;
+var t v1 ;
+ char v2;
+begin
+ read(v1);
+ v1:=v1*10;
+ v1 = "d";
+ v2:= 'a';
+ write(v1)
+end.
+输入程序段经过词法分析器之后的Token序列为:
+reserved word,PROGRAM
+CHAR,p
+reserved word,TYPE
+CHAR,t
+EQ,=
+reserved word,INTEGER
+SEMI,;
+reserved word,VAR
+CHAR,t
+ID,v1
+SEMI,;
+reserved word,CHAR
+ID,v2
+SEMI,;
+reserved word,BEGIN
+reserved word,READ
+LPAREN,(
+ID,v1
+RPAREN,)
+SEMI,;
+ID,v1
+ASSIGN,:=
+ID,v1
+TIMES,*
+NUM,10
+SEMI,;
+ID,v1
+EQ,=
+SY,"
+CHAR,d
+SY,"
+SEMI,;
+ID,v2
+ASSIGN,:=
+COMMA,'
+CHAR,a
+COMMA,'
+SEMI,;
+reserved word,WRITE
+LPAREN,(
+ID,v1
+RPAREN,)
+reserved word,END
+DOT,.
+EOF
+程序经过语法分析器之后的语法分析树为:
+Prok
+    PheadK p
+    TYPE
+        Deck INTEGER t
+    VAR
+        DecK t v1
+        DecK CHAR v2
+    StmLK
+        StmtK READ
+            ExpK v1 IdK
+        StmtK AssignK
+            ExpK v1 IdK
+            ExpK v1 IdK
+            ExpK OP *
+            ExpK const 10
+        StmtK AssignK
+            ExpK v1 IdK
+            ExpK d IdK
+        StmtK AssignK
+            ExpK v2 IdK
+            ExpK a IdK
+        StmtK WRITE
+            ExpK v1 IdK
+语法分析树生成成功
+D:\编译器\vs代码区\compiler\Debug\compiler.exe (进程 16132)已退出，代码为 0。
+按任意键关闭此窗口. . .
